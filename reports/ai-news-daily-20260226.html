@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 AI 科技新闻日报 | 2026年02月26日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            color: white;
+            padding: 35px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .header .date {
+            font-size: 15px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        .header .subtitle {
+            margin-top: 10px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+        .content {
+            padding: 35px 40px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a73e8;
+            border-bottom: 3px solid #1a73e8;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon {
+            font-size: 22px;
+        }
+
+        /* 洞察框 */
+        .insight-box {
+            background: linear-gradient(135deg, #e8f0fe 0%, #f0f7ff 100%);
+            border-left: 5px solid #1a73e8;
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+        .insight-box h4 {
+            margin: 0 0 15px 0;
+            color: #1a73e8;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .insight-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .insight-box li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+            color: #3c4043;
+            font-size: 14px;
+        }
+        .insight-box li strong {
+            color: #1a73e8;
+        }
+
+        /* 行动建议框 */
+        .action-box {
+            background: linear-gradient(135deg, #fef7e0 0%, #fff8e1 100%);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 22px;
+            margin-top: 20px;
+        }
+        .action-box h4 {
+            margin: 0 0 15px 0;
+            color: #856404;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .action-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .action-box li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+            color: #856404;
+            font-size: 14px;
+        }
+
+        /* 新闻卡片 */
+        .news-item {
+            background: #f9fafb;
+            border-left: 4px solid #1a73e8;
+            border-radius: 0 10px 10px 0;
+            padding: 20px;
+            margin-bottom: 18px;
+            transition: all 0.25s ease;
+        }
+        .news-item:hover {
+            transform: translateX(5px);
+            background: #f0f4ff;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.1);
+        }
+        .news-item.headline {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            border-left: 5px solid #d93025;
+        }
+        .news-item.pharma {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 5px solid #0284c7;
+        }
+        .news-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #202124;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .news-meta {
+            font-size: 12px;
+            color: #5f6368;
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .news-meta span {
+            background: #e8f0fe;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .news-summary {
+            font-size: 14px;
+            color: #3c4043;
+            margin-bottom: 14px;
+            line-height: 1.85;
+        }
+        .news-link {
+            display: inline-block;
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            background: #e8f0fe;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .news-link:hover {
+            background: #d2e3fc;
+            text-decoration: none;
+        }
+        .news-impact {
+            margin-top: 14px;
+            padding: 12px 15px;
+            background: rgba(26, 115, 232, 0.08);
+            border-radius: 8px;
+            font-size: 13px;
+            color: #1a73e8;
+        }
+        .news-impact strong {
+            color: #1a73e8;
+        }
+
+        /* 标签 */
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tag.pharma {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+        }
+        .tag.tech {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+        .tag.business {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+        .tag.hot {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+        }
+
+        /* 页脚 */
+        .footer {
+            border-top: 2px solid #e5e7eb;
+            padding: 25px 40px;
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+        .footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* 热度指示器 */
+        .heat-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #f59e0b;
+        }
+        .heat-stars {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📰 AI 科技新闻日报</h1>
+            <div class="date">2026年02月26日 星期四</div>
+            <div class="subtitle">为百济神州 APAC GTS 团队定制</div>
+        </div>
+
+        <div class="content">
+            <!-- 执行摘要 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🎯</span>
+                    执行摘要
+                </div>
+                <div class="insight-box">
+                    <h4>💡 对百济神州 GTS 工作的战略意义</h4>
+                    
+                    <ul>
+                        <li><strong>AI 大模型竞争白热化</strong>：OpenAI、Anthropic、Google 等公司持续推出新模型，建议 GTS 团队密切关注多模态 AI 在药物研发数据分析中的应用潜力。</li>
+                        <li><strong>医疗 AI 进入 ROI 验证期</strong>：医疗系统正从 AI 试点转向规模化部署，重点关注可衡量的业务影响。百济神州可加速 AI 在临床试验优化、药物研发数据分析等场景的落地。</li>
+                        <li><strong>企业 AI 应用加速</strong>：企业级 AI 应用正从辅助工具向自主代理演进，GTS 团队可探索 AI Agent 在 IT 运维、数据管道自动化等场景的应用。</li>
+                        <li><strong>AI 基础设施成本优化</strong>：AI 数据中心和算力成本成为关注焦点，建议评估公司 AI 项目的能源成本预算和优化空间。</li>
+                    </ul>
+                </div>
+                <div class="action-box">
+                    <h4>✅ 建议采取的行动</h4>
+                    
+                    <ul>
+                        <li>组织 GTS 团队学习今日 AI 医疗应用案例，识别 2-3 个高价值应用场景</li>
+                        <li>评估 AI Agent 在临床试验数据管理、IT 运维自动化中的试点方案</li>
+                        <li>关注大模型厂商最新发布，评估在多模态医学影像分析、药物文献自动摘要的潜力</li>
+                        <li>与云服务商探讨 AI 基础设施成本优化方案</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 头条新闻 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🔥</span>
+                    头条新闻
+                    <span class="tag hot">HOT</span>
+                </div>
+                
+            <div class="news-item headline">
+                <div class="news-title">AI Trading Daily Report: February 25, 2026 | $-303.25<br><span style="font-weight:400;color:#666;font-size:15px;">AI（人工智能） Trading Daily Report: February 25, 2026 | $-303.25</span></div>
+                <div class="news-meta">
+                    <span>Dev.to - AI</span>
+                    <span>刚刚</span>
+                    <span class="tag hot">HOT</span> <span class="tag business">商业</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐⭐</span> (95)</span>
+                </div>
+                <div class="news-summary"><blockquote> <p><strong>AI Disclosure</strong>: This daily report was generated by our AI trading system. All financial<br> data comes from live sources: Alpaca (broker), FRED (Treasury yields), and our RAG system<br> (lessons learned). Every number is verifiable. Human oversight: Igor Ganapolsky.</...<br><span style="color:#666;"><blockquote> <p><strong>AI（人工智能） Disclosure</strong>: This daily report was generated by our AI（人工智能） trading 系统. All financial<br> data comes from live sources: Alpaca (broker), FRED (Treasury yields), and our RAG 系统<br> (lessons learned). Every number is verifiable. Human oversight: Igor Ganapolsky.</...</span></div>
+                <a href="https://dev.to/igorganapolsky/ai-trading-daily-report-february-25-2026-30325-5358" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item headline">
+                <div class="news-title">AI Trading Daily Report: February 25, 2026 | $-303.25<br><span style="font-weight:400;color:#666;font-size:15px;">AI（人工智能） Trading Daily Report: February 25, 2026 | $-303.25</span></div>
+                <div class="news-meta">
+                    <span>Dev.to - Machine Learning</span>
+                    <span>刚刚</span>
+                    <span class="tag hot">HOT</span> <span class="tag business">商业</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐⭐</span> (95)</span>
+                </div>
+                <div class="news-summary"><blockquote> <p><strong>AI Disclosure</strong>: This daily report was generated by our AI trading system. All financial<br> data comes from live sources: Alpaca (broker), FRED (Treasury yields), and our RAG system<br> (lessons learned). Every number is verifiable. Human oversight: Igor Ganapolsky.</...<br><span style="color:#666;"><blockquote> <p><strong>AI（人工智能） Disclosure</strong>: This daily report was generated by our AI（人工智能） trading 系统. All financial<br> data comes from live sources: Alpaca (broker), FRED (Treasury yields), and our RAG 系统<br> (lessons learned). Every number is verifiable. Human oversight: Igor Ganapolsky.</...</span></div>
+                <a href="https://dev.to/igorganapolsky/ai-trading-daily-report-february-25-2026-30325-5358" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item headline">
+                <div class="news-title">IDF killed Gaza aid workers at point blank range in 2025 massacre: Report<br><span style="font-weight:400;color:#666;font-size:15px;">[英文] IDF killed Gaza aid workers at point blank range in 2025 massacre: Report</span></div>
+                <div class="news-meta">
+                    <span>Hacker News</span>
+                    <span>1天前</span>
+                    <span class="tag hot">HOT</span> <span class="tag business">商业</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (83)</span>
+                </div>
+                <div class="news-summary">HN: 2008 points, 870 comments<br><span style="color:#666;">[英文] HN: 2008 points, 870 comments</span></div>
+                <a href="https://www.dropsitenews.com/p/israeli-soldiers-tel-sultan-gaza-red-crescent-civil-defense-massacre-report-forensic-architecture-earshot" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            </div>
+
+            <!-- 趋势新闻 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">📈</span>
+                    趋势新闻
+                </div>
+                
+            <div class="news-item ">
+                <div class="news-title">The White House wants AI companies to cover rate hikes. Most have already said they would.<br><span style="font-weight:400;color:#666;font-size:15px;">The White House wants AI（人工智能） companies to cover rate hikes. Most have already said they would.</span></div>
+                <div class="news-meta">
+                    <span>TechCrunch</span>
+                    <span>1小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">Many of hyperscalers have already made public commitments in to cover electricity cost increases.<br><span style="color:#666;">[英文] Many of hyperscalers have already made public commitments in to cover electricity cost increases.</span></div>
+                <a href="https://techcrunch.com/2026/02/25/the-white-house-wants-ai-companies-to-cover-rate-hikes-most-have-already-said-they-would/" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">An accountant won a big jackpot on Kalshi by betting against DOGE<br><span style="font-weight:400;color:#666;font-size:15px;">[英文] An accountant won a big jackpot on Kalshi by betting against DOGE</span></div>
+                <div class="news-meta">
+                    <span>TechCrunch</span>
+                    <span>3小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">A tax accountant saw Elon Musk fans bidding up a Kalshi prediction market and saw a sure bet to make easy money.<br><span style="color:#666;">A tax accountant saw Elon Musk fans bidding up a Kalshi prediction 市场 and saw a sure bet to make easy money.</span></div>
+                <a href="https://techcrunch.com/2026/02/25/an-accountant-won-a-big-jackpot-on-kalshi-by-betting-against-doge/" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">Wearable startup CUDIS launches a new health ring line with an AI-fueled &#8216;coach&#8217;<br><span style="font-weight:400;color:#666;font-size:15px;">Wearable 初创公司 CUDIS 推出 a new health ring line with an AI（人工智能）-fueled &#8216;coach&#8217;</span></div>
+                <div class="news-meta">
+                    <span>TechCrunch</span>
+                    <span>3小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">The wearable incentivizes healthy behavior with points that can be redeemed for health products.<br><span style="color:#666;">[英文] The wearable incentivizes healthy behavior with points that can be redeemed for health products.</span></div>
+                <a href="https://techcrunch.com/2026/02/25/wearable-startup-cudis-launches-a-new-health-ring-line-with-an-ai-fueled-coach/" class="news-link" target="_blank">阅读全文 →</a>
+                <div class="news-impact"><strong>百济神州机会：</strong>与百济神州的数字化战略高度契合，可考虑在临床试验设计中引入 AI 驱动的去中心化试验元素。</div>
+            </div>
+            <div class="news-item ">
+                <div class="news-title">The public opposition to AI infrastructure is heating up<br><span style="font-weight:400;color:#666;font-size:15px;">The public opposition to AI（人工智能） infrastructure is heating up</span></div>
+                <div class="news-meta">
+                    <span>TechCrunch</span>
+                    <span>3小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">Public backlash over the data center boom is leading to a variety of draconian policies — including bans on new construction.<br><span style="color:#666;">Public backlash over the 数据中心 boom is 领先的 to a variety of draconian policies — including bans on new construction.</span></div>
+                <a href="https://techcrunch.com/2026/02/25/the-public-opposition-to-ai-infrastructure-is-heating-up/" class="news-link" target="_blank">阅读全文 →</a>
+                <div class="news-impact"><strong>基础设施启示：</strong>建议评估公司 AI 项目的能源成本预算和优化空间。</div>
+            </div>
+            <div class="news-item ">
+                <div class="news-title">OpenAI COO says ads will be &#8216;an iterative process&#8217;<br><span style="font-weight:400;color:#666;font-size:15px;">OpenAI（开放人工智能） COO says ads will be &#8216;an iterative process&#8217;</span></div>
+                <div class="news-meta">
+                    <span>TechCrunch</span>
+                    <span>4小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">COO Brad Lightcap noted that ads can add to the product experience of users if they are done right. He urged to give OpenAI a few months to see how the company fares in rolling out the product.<br><span style="color:#666;">COO Brad Lightcap noted that ads can add to the 产品 experience of users if they are done right. He urged to give OpenAI（开放人工智能） a few months to see how the 公司 fares in rolling out the 产品.</span></div>
+                <a href="https://techcrunch.com/2026/02/25/openai-coo-says-ads-will-be-an-iterative-process/" class="news-link" target="_blank">阅读全文 →</a>
+                <div class="news-impact"><strong>GTS 启示：</strong>建议评估该模型在药物文献自动摘要、医学影像分析等场景的应用潜力。</div>
+            </div>
+            <div class="news-item ">
+                <div class="news-title">Riley Walz, the Jester of Silicon Valley, Is Joining OpenAI<br><span style="font-weight:400;color:#666;font-size:15px;">Riley Walz, the Jester of Silicon Valley, Is Joining OpenAI（开放人工智能）</span></div>
+                <div class="news-meta">
+                    <span>Wired</span>
+                    <span>2小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">The software engineer is famous for his online stunts. Now he’s joining the company behind ChatGPT to work on new ways for humans to use AI systems.<br><span style="color:#666;">The 软件 engineer is famous for his online stunts. Now he’s joining the 公司 behind ChatGPT to work on new ways for humans to use AI（人工智能） systems.</span></div>
+                <a href="https://www.wired.com/story/openai-hires-riley-walz/" class="news-link" target="_blank">阅读全文 →</a>
+                <div class="news-impact"><strong>GTS 启示：</strong>建议评估该模型在药物文献自动摘要、医学影像分析等场景的应用潜力。</div>
+            </div>
+            <div class="news-item ">
+                <div class="news-title">The AirPods Pro 3 Are $20 Off<br><span style="font-weight:400;color:#666;font-size:15px;">[英文] The AirPods Pro 3 Are $20 Off</span></div>
+                <div class="news-meta">
+                    <span>Wired</span>
+                    <span>4小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">It's not the flashiest deal, but if you need a new pair of our favorite earbuds for iPhone owners, you can snag them at a slight discount.<br><span style="color:#666;">[英文] It's not the flashiest deal, but if you need a new pair of our favorite earbuds for iPhone owners, you can snag them at a slight discount.</span></div>
+                <a href="https://www.wired.com/story/apple-airpods-pro-3-deal-226/" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">Talk to Your Own Personal Isaac Newton With Ailias’s Hologram Avatars<br><span style="font-weight:400;color:#666;font-size:15px;">[英文] Talk to Your Own Personal Isaac Newton With Ailias’s Hologram Avatars</span></div>
+                <div class="news-meta">
+                    <span>Wired</span>
+                    <span>10小时前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐⭐</span> (75)</span>
+                </div>
+                <div class="news-summary">If you've ever wanted to bounce ideas off your favorite historical figure, Ailias gives you the chance.<br><span style="color:#666;">[英文] If you've ever wanted to bounce ideas off your favorite historical figure, Ailias gives you the chance.</span></div>
+                <a href="https://www.wired.com/story/ailias-hologram-avatars/" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            </div>
+
+            <!-- 相关新闻 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">📰</span>
+                    相关资讯
+                </div>
+                
+            <div class="news-item ">
+                <div class="news-title">UK fines Reddit for not checking user ages aggressively enough<br><span style="font-weight:400;color:#666;font-size:15px;">[英文] UK fines Reddit for not checking user ages aggressively enough</span></div>
+                <div class="news-meta">
+                    <span>Ars Technica</span>
+                    <span>1天前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐</span> (53)</span>
+                </div>
+                <div class="news-summary">UK agency alleges "Reddit failed to apply any robust age assurance mechanism."<br><span style="color:#666;">[英文] UK agency alleges "Reddit failed to apply any robust age assurance mechanism."</span></div>
+                <a href="https://arstechnica.com/tech-policy/2026/02/uk-fines-reddit-for-not-checking-user-ages-aggressively-enough/" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">A retinal reboot for amblyopia<br><span style="font-weight:400;color:#666;font-size:15px;">[英文] A retinal reboot for amblyopia</span></div>
+                <div class="news-meta">
+                    <span>MIT Technology Review</span>
+                    <span>1天前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐</span> (53)</span>
+                </div>
+                <div class="news-summary">In the vision disorder amblyopia (or “lazy eye”), impaired vision in one eye early in life causes neural connections in the brain’s visual system to shift toward supporting the other eye, leaving the amblyopic eye less capable even if the original impairment is corrected. Current interventions don’t...<br><span style="color:#666;">In the vision disorder amblyopia (or “lazy eye”), impaired vision in one eye early in life causes neural connections in the brain’s visual 系统 to shift toward supporting the other eye, leaving the amblyopic eye less capable even if the original impairment is corrected. Current interventions don’t...</span></div>
+                <a href="https://www.technologyreview.com/2026/02/24/1132077/a-retinal-reboot-for-amblyopia/" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">A I-designed proteins may help spot cancer<br><span style="font-weight:400;color:#666;font-size:15px;">[英文] A I-designed proteins may help spot cancer</span></div>
+                <div class="news-meta">
+                    <span>MIT Technology Review</span>
+                    <span>1天前</span>
+                    <span class="tag tech">技术</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐⭐</span> (53)</span>
+                </div>
+                <div class="news-summary">Researchers at MIT and Microsoft have used artificial intelligence to create molecular sensors that could detect early signs of cancer via a urine test. The researchers developed an AI model to design short proteins that are targeted by enzymes called proteases, which are overactive in cancer cells....<br><span style="color:#666;">Researchers at MIT and 微软 have used 人工智能 to create molecular sensors that could detect early signs of cancer via a urine test. The researchers developed an AI（人工智能） 模型 to design short proteins that are targeted by enzymes called proteases, which are overactive in cancer cells....</span></div>
+                <a href="https://www.technologyreview.com/2026/02/24/1132083/a-i-designed-proteins-may-help-spot-cancer/" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">字节AI一夜爆红又“秒怂”，Seedance 2为何自己踩下刹车？</div>
+                <div class="news-meta">
+                    <span>虎嗅</span>
+                    <span>2月11日</span>
+                    <span class="tag business">商业</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐</span> (43)</span>
+                </div>
+                <div class="news-summary">只上传一张照片，模型竟能生成语音和表情都高度还原的说话视频，让人意识到AI不仅能记住你的脸，还能复制你的声音。下载虎嗅APP，第一时间获取深度独到的商业科技资讯，连接更多创新人群与线下活动</div>
+                <a href="http://www.huxiu.com/article/4834171.html?f=wangzhan" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">印奇捞到了“搞钱人”</div>
+                <div class="news-meta">
+                    <span>虎嗅</span>
+                    <span>2月12日</span>
+                    <span class="tag business">商业</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐</span> (33)</span>
+                </div>
+                <div class="news-summary">出品|虎嗅汽车组作者|邢书博头图|视觉中国2026年2月12日，千里科技发布公告称，赵明成为公司第六届董事会非独立董事候选人，任职期限与本届董事会任期一致。同日千里科技另一则公告显示，董事会将新增联席董事长一人。如无意外，这个职位是为赵明增设的。有媒体报道，称赵明与印奇已接触半年多，他视AI为“下一个20年事业”。今日赵明在微博与印奇互动，称将“一起携手打造AI商业闭环，助力千里腾飞。”这不是千里科技第一次引入华为系高管。此前已引入前华为车BU总裁王军和自动驾驶负责人陈奇。王军目前负责华千里科技研发等技术板块，陈奇负责芯片硬件平台。此次赵明加入，技术产品商业化将形成华为系主导的格局。值得一提的...</div>
+                <a href="http://www.huxiu.com/article/4834817.html?f=wangzhan" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            <div class="news-item ">
+                <div class="news-title">盘点十个最可能被Seedance 2.0颠覆的行业</div>
+                <div class="news-meta">
+                    <span>虎嗅</span>
+                    <span>2月12日</span>
+                    <span class="tag business">商业</span> 
+                    <span class="heat-indicator">热度：<span class="heat-stars">⭐⭐</span> (33)</span>
+                </div>
+                <div class="news-summary">真人短剧翻拍、AI漫剧直出、中低端商业广告制作成为头牌下载虎嗅APP，第一时间获取深度独到的商业科技资讯，连接更多创新人群与线下活动</div>
+                <a href="http://www.huxiu.com/article/4834237.html?f=wangzhan" class="news-link" target="_blank">阅读全文 →</a>
+                
+            </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>📧 AI 科技新闻日报</strong> | 百济神州 APAC GTS 专属定制</p>
+            <p>数据来源：75+ 全球科技媒体 | 生成时间：2026/2/26 06:37:13</p>
+            <p>报告链接：<a href="https://davidli.github.io/project/reports/ai-news-daily-20260226.html">https://davidli.github.io/project/reports/ai-news-daily-20260226.html</a></p>
+        </div>
+    </div>
+</body>
+</html>
