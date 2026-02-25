@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempus AI 深度分析报告 | 百济神州 GTS</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --success-color: #38a169;
+            --warning-color: #d69e2e;
+            --danger-color: #e53e3e;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #1a202c;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .header-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* Executive Summary */
+        .executive-summary {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--accent-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .summary-card.highlight {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-left-color: var(--success-color);
+        }
+
+        .summary-card.warning {
+            background: linear-gradient(135deg, #fffff0 0%, #fefcbf 100%);
+            border-left-color: var(--warning-color);
+        }
+
+        .summary-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .summary-card-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .summary-card-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Content Sections */
+        .section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-content {
+            margin-top: 25px;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* Financial Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .metric-change {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .metric-change.positive {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .metric-change.negative {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        /* Business Model */
+        .business-model {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .business-pillar {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+        }
+
+        .business-pillar h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .business-pillar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .business-pillar li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .business-pillar li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        /* Competitive Landscape */
+        .competitor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .competitor-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .competitor-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .competitor-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .competitor-table tr:hover {
+            background: #f7fafc;
+        }
+
+        .competitor-highlight {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+        }
+
+        /* Investment Thesis */
+        .thesis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .thesis-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 30px;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .thesis-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .thesis-card-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .thesis-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Key Investors */
+        .investors-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .investor-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .investor-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow);
+        }
+
+        .investor-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .investor-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .investor-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .investor-status.bullish {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        /* Risks */
+        .risks-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .risks-list li {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border-left: 4px solid var(--danger-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .risks-list li strong {
+            color: var(--danger-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px 40px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .section, .executive-summary {
+                padding: 25px 20px;
+            }
+
+            .business-model {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header, .executive-summary, .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Stock Ticker */
+        .stock-ticker {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .ticker-symbol {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .ticker-price {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .ticker-change {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <span class="header-badge">📊 深度分析报告</span>
+            <h1>Tempus AI Inc. (TEM)</h1>
+            <p class="header-subtitle">AI+ 精准医疗龙头，数据壁垒构建千亿市值潜力</p>
+
+            <div class="header-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">📅</div>
+                    <div>
+                        <div class="meta-label">报告日期</div>
+                        <div class="meta-value">2026 年 2 月 26 日</div>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🏢</div>
+                    <div>
+                        <div class="meta-label">股票代码</div>
+                        <div class="meta-value">NASDAQ: TEM</div>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">💼</div>
+                    <div>
+                        <div class="meta-label">所属行业</div>
+                        <div class="meta-value">AI 医疗 / 精准诊断</div>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">📈</div>
+                    <div>
+                        <div class="meta-label">评级</div>
+                        <div class="meta-value" style="color: var(--success-color);">强烈推荐</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock Ticker -->
+        <div class="stock-ticker">
+            <div>
+                <span class="ticker-symbol">TEM</span>
+                <span style="opacity: 0.8; margin-left: 10px;">Tempus AI Inc.</span>
+            </div>
+            <div>
+                <span class="ticker-price">$57.95</span>
+                <span class="ticker-change">+154% (1Y)</span>
+            </div>
+            <div>
+                <span style="opacity: 0.8;">市值:</span>
+                <span style="font-weight: 600; margin-left: 5px;">$103.1 亿</span>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <h2 class="section-title">执行摘要</h2>
+            <p>Tempus AI 是 AI+ 精准医疗领域的核心标的，通过构建全球最大的癌症患者多模态数据库，正在重塑肿瘤诊疗和药物研发的基础设施。2025 年业绩爆发式增长，收入飙升 83% 至 13 亿美元，诊断和数据服务双轮驱动商业模式日益成熟。</p>
+
+            <div class="summary-grid">
+                <div class="summary-card highlight">
+                    <div class="summary-card-title">2025 年全年收入</div>
+                    <div class="summary-card-value">$13 亿</div>
+                    <div class="summary-card-subtitle">同比增长 83.4%</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-title">Q4 单季收入</div>
+                    <div class="summary-card-value">$3.67 亿</div>
+                    <div class="summary-card-subtitle">同比增长 83.0%</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-title">诊断部门收入</div>
+                    <div class="summary-card-value">$2.67 亿</div>
+                    <div class="summary-card-subtitle">Q4 同比增长 121.6%</div>
+                </div>
+                <div class="summary-card warning">
+                    <div class="summary-card-title">2026 年收入指引</div>
+                    <div class="summary-card-value">$15.9 亿</div>
+                    <div class="summary-card-subtitle">预计增长 25%+</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Performance -->
+        <div class="section">
+            <h2 class="section-title">财务表现</h2>
+            <div class="section-content">
+                <p>Tempus AI 在 2025 年交出了令人瞩目的业绩答卷，展现了 AI+ 医疗商业模式的强大爆发力。</p>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">全年收入</div>
+                        <div class="metric-value">$13 亿</div>
+                        <span class="metric-change positive">+83.4%</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Q4 收入</div>
+                        <div class="metric-value">$3.67 亿</div>
+                        <span class="metric-change positive">+83.0%</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">诊断收入 (Q4)</div>
+                        <div class="metric-value">$2.67 亿</div>
+                        <span class="metric-change positive">+121.6%</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">数据服务收入</div>
+                        <div class="metric-value">$3.16 亿</div>
+                        <span class="metric-change positive">+30.9%</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">调整后 EBITDA</div>
+                        <div class="metric-value">-$740 万</div>
+                        <span class="metric-change negative">亏损收窄</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">现金储备</div>
+                        <div class="metric-value">$7.6 亿</div>
+                        <span class="metric-change positive">充裕</span>
+                    </div>
+                </div>
+
+                <p><strong>核心亮点：</strong></p>
+                <ul style="margin-left: 20px; margin-top: 15px;">
+                    <li>诊断部门爆发式增长，Q4 肿瘤学销量同比增长 29%，遗传销量增长 23%</li>
+                    <li>数据与应用部门创造 1 亿美元 Q4 收入，同比增长 25.1%，展现平台化价值</li>
+                    <li>2025 年收购 AI 数字病理公司 Paige（8125 万美元），强化技术壁垒</li>
+                    <li>2026 年调整后 EBITDA 指引为$6500 万，预计实现盈利转正</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Business Model -->
+        <div class="section">
+            <h2 class="section-title">商业模式</h2>
+            <div class="section-content">
+                <p>Tempus 的野心远不止于漂亮的财务数据。它正试图通过构建全球最大规模的癌症患者多模态数据库，深度开发 AI 医疗应用，成为医疗行业的"微软"。</p>
+
+                <div class="business-model">
+                    <div class="business-pillar">
+                        <h4>🔬 诊断服务 (Diagnostics)</h4>
+                        <ul>
+                            <li>肿瘤基因组测序检测</li>
+                            <li>液体活检和分子残留病灶检测</li>
+                            <li>AI 辅助的病理分析</li>
+                            <li>个体化治疗方案推荐</li>
+                            <li>覆盖美国主要癌症中心</li>
+                        </ul>
+                    </div>
+                    <div class="business-pillar">
+                        <h4>💾 数据与应用 (Data & Applications)</h4>
+                        <ul>
+                            <li>多模态临床数据库（基因组 + 电子病历）</li>
+                            <li>制药公司药物研发数据服务</li>
+                            <li>AI 驱动的患者分层和试验设计</li>
+                            <li>真实世界证据 (RWE) 生成</li>
+                            <li>医院和护理决策支持系统</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p><strong>数据飞轮效应：</strong>Tempus 通过诊断服务积累海量患者数据 → 数据训练 AI 算法提升诊断准确性 → 更好的诊断吸引更多医院和药企客户 → 更多数据进一步强化 AI 能力，形成正向循环。</p>
+            </div>
+        </div>
+
+        <!-- Competitive Landscape -->
+        <div class="section">
+            <h2 class="section-title">竞争格局</h2>
+            <div class="section-content">
+                <p>精准医疗和基因组学诊断市场竞争激烈，但 Tempus 凭借独特的"数据 +AI"双轮驱动模式脱颖而出。</p>
+
+                <table class="competitor-table">
+                    <thead>
+                        <tr>
+                            <th>公司</th>
+                            <th>核心业务</th>
+                            <th>优势</th>
+                            <th>与 Tempus 对比</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="competitor-highlight">
+                            <td><strong>Tempus AI</strong></td>
+                            <td>诊断 + 数据平台</td>
+                            <td>多模态数据 +AI 算法</td>
+                            <td>数据壁垒最深，增长最快</td>
+                        </tr>
+                        <tr>
+                            <td>Foundation Medicine</td>
+                            <td>基因组检测</td>
+                            <td>Roche 背书，渠道强</td>
+                            <td>被 Roche 收购，创新放缓</td>
+                        </tr>
+                        <tr>
+                            <td>Caris Life Sciences</td>
+                            <td>分子图谱</td>
+                            <td>组织样本库丰富</td>
+                            <td>2025 年 IPO，数据能力弱</td>
+                        </tr>
+                        <tr>
+                            <td>Guardant Health</td>
+                            <td>液体活检</td>
+                            <td>血液检测技术领先</td>
+                            <td>单一技术路线，数据较少</td>
+                        </tr>
+                        <tr>
+                            <td>Natera</td>
+                            <td>基因检测</td>
+                            <td>样本处理量大</td>
+                            <td>专注妇幼和器官移植</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Tempus 的核心竞争优势（"数据护城河"）：</strong></p>
+                <ul style="margin-left: 20px; margin-top: 15px;">
+                    <li><strong>多模态数据：</strong>同时拥有基因组数据、临床数据、影像数据、病理数据，竞争对手通常只擅长单一垂直领域</li>
+                    <li><strong>数据规模：</strong>全球最大的癌症患者数据库，样本量和数据维度持续领先</li>
+                    <li><strong>AI 算法：</strong>自研 AI _enabled_ 算法和 PGx（药物基因组学）整合，优化个体化治疗推荐</li>
+                    <li><strong>平台效应：</strong>连接患者、医院、药企三方，形成网络效应</li>
+                    <li><strong>自建 + 并购：</strong>通过收购 Paige 等公司快速补齐数字病理等能力</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Investment Thesis -->
+        <div class="section">
+            <h2 class="section-title">投资亮点</h2>
+            <div class="section-content">
+                <div class="thesis-grid">
+                    <div class="thesis-card">
+                        <h4><span class="thesis-card-icon">📊</span> 数据护城河</h4>
+                        <p>Tempus 构建了全球最大的癌症多模态数据库，这种数据积累需要时间和规模，形成极高的进入壁垒。竞争对手难以在短期内复制。</p>
+                    </div>
+                    <div class="thesis-card">
+                        <h4><span class="thesis-card-icon">🤖</span> AI 驱动</h4>
+                        <p>AI 算法持续优化诊断准确性和治疗推荐，形成"数据越多→AI 越强→客户越多→数据更多"的正向飞轮。</p>
+                    </div>
+                    <div class="thesis-card">
+                        <h4><span class="thesis-card-icon">💊</span> 药企刚需</h4>
+                        <p>制药公司需要 Tempus 的数据进行患者分层、试验设计和真实世界证据生成，成为药物研发的基础设施。</p>
+                    </div>
+                    <div class="thesis-card">
+                        <h4><span class="thesis-card-icon">🏥</span> 医院渗透</h4>
+                        <p>与美国主要癌症中心深度合作，诊断服务已成为肿瘤医生的标准工具，用户粘性极高。</p>
+                    </div>
+                    <div class="thesis-card">
+                        <h4><span class="thesis-card-icon">📈</span> 增长可见性</h4>
+                        <p>2026 年收入指引$15.9 亿（+25%），EBITDA 预计转正，盈利拐点明确，增长确定性高。</p>
+                    </div>
+                    <div class="thesis-card">
+                        <h4><span class="thesis-card-icon">🎯</span> 千亿市值潜力</h4>
+                        <p>对标互联网时代的微软，Tempus 有潜力成为医疗行业的平台级基础设施，长期市值空间巨大。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Investors -->
+        <div class="section">
+            <h2 class="section-title">知名投资者</h2>
+            <div class="section-content">
+                <p>Tempus 获得了多位投资界大佬的青睐，彰显了其商业模式的吸引力。</p>
+
+                <div class="investors-section">
+                    <div class="investor-card">
+                        <div class="investor-name">Cathie Wood（木头姐）</div>
+                        <div class="investor-title">ARK Invest 创始人</div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+                            旗下方舟投资持续增持 Tempus，2025 年 11 月单笔买入$1620 万，2026 年 1 月继续加仓。
+                        </p>
+                        <span class="investor-status bullish">🐂 持续增持</span>
+                    </div>
+                    <div class="investor-card">
+                        <div class="investor-name">段永平</div>
+                        <div class="investor-title">著名投资人</div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+                            2025 年开始建仓 Tempus，看好 AI+ 医疗的长期价值和商业模式。
+                        </p>
+                        <span class="investor-status bullish">🐂 长期持有</span>
+                    </div>
+                    <div class="investor-card">
+                        <div class="investor-name">Baillie Gifford</div>
+                        <div class="investor-title">苏格兰抵押贷款投资信托</div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+                            长期成长股投资者，持有 Tempus 大量股份，看好其平台化潜力。
+                        </p>
+                        <span class="investor-status bullish">🐂 重仓持有</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risks -->
+        <div class="section">
+            <h2 class="section-title">风险提示</h2>
+            <div class="section-content">
+                <ul class="risks-list">
+                    <li><strong>监管风险：</strong>基因组检测和 AI 医疗诊断面临 FDA 等监管机构的严格审查，政策变化可能影响业务</li>
+                    <li><strong>竞争加剧：</strong>Roche、Illumina 等巨头可能加大投入，Caris 等竞争对手也在快速扩张</li>
+                    <li><strong>盈利压力：</strong>虽然预计 2026 年 EBITDA 转正，但净利润仍为负，需要持续证明盈利能力</li>
+                    <li><strong>数据隐私：</strong>医疗数据涉及患者隐私，数据安全和合规成本较高</li>
+                    <li><strong>估值波动：</strong>当前市值约$100 亿，估值较高，股价波动风险大</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Implications for BeOne -->
+        <div class="section">
+            <h2 class="section-title">对百济神州的启示</h2>
+            <div class="section-content">
+                <p>作为 BeOne Medicines 的 GTS VP，Tempus 的成功对您的工作有以下启示：</p>
+
+                <div class="thesis-grid">
+                    <div class="thesis-card" style="border-top-color: var(--success-color);">
+                        <h4><span class="thesis-card-icon">🔗</span> 潜在合作机会</h4>
+                        <p>Tempus 的数据服务可用于百济神州肿瘤药物的患者分层、临床试验设计和真实世界证据生成，建议探索合作可能性。</p>
+                    </div>
+                    <div class="thesis-card" style="border-top-color: var(--success-color);">
+                        <h4><span class="thesis-card-icon">💡</span> 数字化转型借鉴</h4>
+                        <p>Tempus 的"数据 +AI"模式值得借鉴，考虑在 GTS 体系中加强数据驱动决策和 AI 应用能力。</p>
+                    </div>
+                    <div class="thesis-card" style="border-top-color: var(--success-color);">
+                        <h4><span class="thesis-card-icon">📊</span> 竞争情报价值</h4>
+                        <p>关注 Tempus 与竞争对手药企的合作动态，了解其数据服务如何加速药物研发，为百济神州提供竞争情报。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                本报告由 <span class="footer-highlight">百济神州 GTS</span> 制作，仅供参考，不构成投资建议。<br>
+                数据来源：Tempus AI 财报、公开资料、投资者关系文件
+            </p>
+        </div>
+    </div>
+</body>
+</html>
