@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全球香蕉市场深度研究报告 2026</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 50px 40px;
+      position: relative;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') center/200px repeat;
+      opacity: 0.5;
+    }
+    .header h1 {
+      font-size: 2.8em;
+      margin-bottom: 15px;
+      position: relative;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .header .subtitle {
+      font-size: 1.3em;
+      opacity: 0.95;
+      position: relative;
+    }
+    .header .meta {
+      margin-top: 20px;
+      font-size: 0.95em;
+      opacity: 0.9;
+      position: relative;
+    }
+    .content { padding: 40px; }
+    .section { margin-bottom: 35px; }
+    .section h2 {
+      color: #1a1a2e;
+      font-size: 1.6em;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #f5576c;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section h3 {
+      color: #2c3e50;
+      font-size: 1.2em;
+      margin: 20px 0 12px 0;
+    }
+    .highlight-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+    .highlight-box h4 {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      opacity: 0.95;
+    }
+    .highlight-box .number {
+      font-size: 3em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .highlight-box .unit {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+    .highlight-box .note {
+      font-size: 0.85em;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+    .key-insight {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+    }
+    .key-insight h4 {
+      color: #856404;
+      margin-bottom: 10px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.95em;
+    }
+    .data-table th {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      padding: 14px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .data-table tr:hover {
+      background: #f8f9fa;
+    }
+    .data-table .rank {
+      font-weight: bold;
+      color: #f5576c;
+    }
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .company-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .company-card .name {
+      font-weight: bold;
+      color: #1a1a2e;
+      font-size: 1.1em;
+    }
+    .company-card .desc {
+      font-size: 0.85em;
+      color: #666;
+      margin-top: 8px;
+    }
+    .trend-list {
+      list-style: none;
+    }
+    .trend-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .trend-list li::before {
+      content: '📈';
+      flex-shrink: 0;
+    }
+    .footer {
+      background: #1a1a2e;
+      color: white;
+      padding: 30px 40px;
+      text-align: center;
+    }
+    .footer .disclaimer {
+      font-size: 0.8em;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+    .toc {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    .toc h3 {
+      margin-top: 0;
+      color: #1a1a2e;
+    }
+    .toc ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+    .toc li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ddd;
+    }
+    .toc a {
+      color: #f5576c;
+      text-decoration: none;
+    }
+    .toc a:hover {
+      text-decoration: underline;
+    }
+    @media print {
+      body { background: white; }
+      .container { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🍌 全球香蕉市场深度研究报告</h1>
+      <p class="subtitle">Banana Global Market In-Depth Research Report</p>
+      <p class="meta">发布时间：2026年2月 | 研究部门</p>
+    </div>
+
+    <div class="content">
+      <div class="toc">
+        <h3>目录</h3>
+        <ul>
+          <li><a href="#overview">一、市场概览</a></li>
+          <li><a href="#production">二、主要生产国与产地分布</a></li>
+          <li><a href="#trade">三、全球贸易格局</a></li>
+          <li><a href="#companies">四、主要企业与竞争格局</a></li>
+          <li><a href="#trends">五、发展趋势与未来展望</a></li>
+        </ul>
+      </div>
+
+      <div class="section" id="overview">
+        <h2>一、市场概览</h2>
+
+        <div class="highlight-box">
+          <h4>2026年全球香蕉市场规模</h4>
+          <div class="number">$1,460亿</div>
+          <div class="unit">美元</div>
+          <div class="note">2025年市场规模约1,395亿美元，预计2026年增长约4.6%</div>
+        </div>
+
+        <p>香蕉是全球消费和交易量最大的水果之一。作为热带代表性水果，香蕉在全球水果产业中占据举足轻重的地位，不仅因为其营养价值高、食用方便，还因为其产业链涉及众多发展中国家，是重要的出口创汇产品。</p>
+
+        <h3>市场规模与增长</h3>
+        <p>根据多家市场研究机构的数据，全球香蕉市场呈现出稳健的增长态势：</p>
+        <ul style="margin: 15px 0; padding-left: 20px; line-height: 1.8;">
+          <li><strong>Mordor Intelligence</strong>：2025年市场规模1,395亿美元，预计2026年达到1,460亿美元，2030年将增至1,834亿美元</li>
+          <li><strong>The Business Research Company</strong>：2025年市场规模1,433亿美元，2026年预计增长至1,478亿美元</li>
+          <li><strong>行业预测</strong>：2026-2033年复合年增长率(CAGR)约为4.3%</li>
+        </ul>
+
+        <div class="key-insight">
+          <h4>💡 关键洞察</h4>
+          <p>北美和欧洲市场对可持续生产香蕉的需求持续增长，在部分市场已占据10%的份额。消费者对环境保护和公平贸易的关注正在重塑香蕉产业链。</p>
+        </div>
+      </div>
+
+      <div class="section" id="production">
+        <h2>二、主要生产国与产地分布</h2>
+
+        <h3>全球香蕉生产格局</h3>
+        <p>香蕉适应性较强，主要种植于热带和亚热带地区。全球主要生产国包括：</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>排名</th>
+              <th>国家</th>
+              <th>特点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rank">1</td>
+              <td>印度</td>
+              <td>全球最大生产国，年产量约3,000万吨</td>
+            </tr>
+            <tr>
+              <td class="rank">2</td>
+              <td>中国</td>
+              <td>主要产自海南、广东、广西等省份</td>
+            </tr>
+            <tr>
+              <td class="rank">3</td>
+              <td>印度尼西亚</td>
+              <td>东南亚最大生产国之一</td>
+            </tr>
+            <tr>
+              <td class="rank">4</td>
+              <td>巴西</td>
+              <td>拉美最大生产国</td>
+            </tr>
+            <tr>
+              <td class="rank">5</td>
+              <td>厄瓜多尔</td>
+              <td>全球最大香蕉出口国</td>
+            </tr>
+            <tr>
+              <td class="rank">6</td>
+              <td>菲律宾</td>
+              <td>亚洲主要出口国，质量优异</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>主要产区特征</h3>
+        <ul style="margin: 15px 0; padding-left: 20px; line-height:1.8;">
+          <li><strong>拉丁美洲</strong>：厄瓜多尔、哥斯达黎加、哥伦比亚、危地马拉是世界主要出口供应地，拥有大规模机械化种植园</li>
+          <li><strong>东南亚</strong>：菲律宾、印度尼西亚、越南、柬埔寨增长迅速，2025年印度出口增长约25%</li>
+          <li><strong>南亚</strong>：印度是全球最大生产国，但主要用于国内消费</li>
+          <li><strong>非洲</strong>：乌干达、坦桑尼亚等东非国家是重要产地，也是当地重要主食</li>
+        </ul>
+      </div>
+
+      <div class="section" id="trade">
+        <h2>三、全球贸易格局</h2>
+
+        <h3>主要出口国</h3>
+        <p>2024-2025年全球香蕉出口贸易中，主要出口国排名如下：</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>排名</th>
+              <th>国家</th>
+              <th>2024-25年出口额</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rank">1</td>
+              <td>厄瓜多尔</td>
+              <td>约136亿美元（全球最大出口国）</td>
+            </tr>
+            <tr>
+              <td class="rank">2</td>
+              <td>菲律宾</td>
+              <td>约11亿美元</td>
+            </tr>
+            <tr>
+              <td class="rank">3</td>
+              <td>哥伦比亚</td>
+              <td>约8.8亿美元</td>
+            </tr>
+            <tr>
+              <td class="rank">4</td>
+              <td>哥斯达黎加</td>
+              <td>主要对北美出口</td>
+            </tr>
+            <tr>
+              <td class="rank">5</td>
+              <td>危地马拉</td>
+              <td>拉美重要出口国</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>主要进口市场</h3>
+        <ul style="margin: 15px 0; padding-left: 20px; line-height:1.8;">
+          <li><strong>美国</strong>：全球最大香蕉进口国，主要从拉丁美洲进口</li>
+          <li><strong>欧盟</strong>：第二大市场，对可持续香蕉需求增长迅速</li>
+          <li><strong>日本</strong>：高质量香蕉需求，对品质要求严格</li>
+          <li><strong>中国</strong>：增长最快的进口市场之一，2025年进口量持续增加</li>
+          <li><strong>俄罗斯</strong>：传统市场，受地缘政治影响波动较大</li>
+        </ul>
+
+        <div class="key-insight">
+          <h4>💡 贸易趋势</h4>
+          <p>亚洲市场正在驱动全球香蕉贸易增长。2026年2月的最新数据显示，越南和柬埔寨的出口也出现了显著增长。随着亚洲中产阶级壮大，对优质香蕉的需求将持续攀升。</p>
+        </div>
+      </div>
+
+      <div class="section" id="companies">
+        <h2>四、主要企业与竞争格局</h2>
+
+        <h3>国际四大巨头</h3>
+        <p>全球香蕉市场由少数几家大型跨国公司主导，2025年12月，Chiquita、Dole、Fresh Del Monte和Fyffes四大公司联合成立了北美香蕉协会(BANA)，共同推进行业发展。</p>
+
+        <div class="company-grid">
+          <div class="company-card">
+            <div class="name">Chiquita</div>
+            <div class="desc">全球最具影响力的香蕉品牌，蓝标香蕉的代名词</div>
+          </div>
+          <div class="company-card">
+            <div class="name">Dole Food Company</div>
+            <div class="desc">历史悠久，全球最大的水果蔬菜生产商之一</div>
+          </div>
+          <div class="company-card">
+            <div class="name">Fresh Del Monte</div>
+            <div class="desc">垂直整合型水果供应商，业务覆盖全球</div>
+          </div>
+          <div class="company-card">
+            <div class="name">Fyffes Group</div>
+            <div class="desc">欧洲市场领先，专注香蕉和菠萝业务</div>
+          </div>
+        </div>
+
+        <h3>市场竞争特点</h3>
+        <ul style="margin: 15px 0; padding-left: 20px; line-height:1.8;">
+          <li><strong>高度集中</strong>：四大企业控制全球约70%的香蕉贸易</li>
+          <li><strong>品牌化经营</strong>：Chiquita的蓝标已成为品质象征</li>
+          <li><strong>垂直整合</strong>：从种植到零售的全产业链控制</li>
+          <li><strong>可持续竞争</strong>：环保和社会责任成为新的竞争焦点</li>
+        </ul>
+
+        <div class="key-insight">
+          <h4>💡 行业新动向</h4>
+          <p>2025年10月成立的BANA(香蕉协会 of North America)标志着行业从竞争走向合作，共同应对气候变化、供应链可持续性和消费者需求变化等挑战。</p>
+        </div>
+      </div>
+
+      <div class="section" id="trends">
+        <h2>五、发展趋势与未来展望</h2>
+
+        <h3>主要发展趋势</h3>
+        <ul class="trend-list">
+          <li>
+            <div>
+              <strong>可持续发展成为核心</strong>
+              <p style="margin-top:5px; color:#666;">有机香蕉、公平贸易认证产品市场份额持续增长，北美和欧洲市场可持续香蕉已占10%</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>气候变化应对</strong>
+              <p style="margin-top:5px; color:#666;">香蕉产业面临气候威胁，新品种研发和种植方式改良成为重点</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>亚洲市场崛起</strong>
+              <p style="margin-top:5px; color:#666;">中国、日本、韩国等亚洲国家进口量持续增长，推动全球贸易格局调整</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>香蕉精深加工</strong>
+              <p style="margin-top:5px; color:#666;">香蕉面粉、香蕉片、香蕉淀粉等深加工产品兴起，拓展产业链价值</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>技术升级</strong>
+              <p style="margin-top:5px; color:#666;">精准农业、物联网监控、区块链溯源等技术应用提升产业效率</p>
+            </div>
+          </li>
+        </ul>
+
+        <h3>市场预测 (2026-2033)</h3>
+        <div class="highlight-box">
+          <h4>2033年市场规模预测</h4>
+          <div class="number">$526亿</div>
+          <div class="unit">美元（仅指特定细分市场）</div>
+          <div class="note">综合考虑通胀和市场需求，预计2026-2033年CAGR约4.3%</div>
+        </div>
+
+        <h3>投资机会与风险</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+          <div style="background: #d4edda; padding: 20px; border-radius: 8px;">
+            <h4 style="color:#155724; margin-bottom:10px;">✅ 投资机会</h4>
+            <ul style="padding-left: 20px; line-height:1.8; color:#155724;">
+              <li>可持续香蕉种植</li>
+              <li>亚洲市场分销渠道</li>
+              <li>香蕉深加工产品</li>
+              <li>冷链物流技术</li>
+            </ul>
+          </div>
+          <div style="background: #f8d7da; padding: 20px; border-radius: 8px;">
+            <h4 style="color:#721c24; margin-bottom:10px;">⚠️ 投资风险</h4>
+            <ul style="padding-left: 20px; line-height:1.8; color:#721c24;">
+              <li>气候异常影响产量</li>
+              <li>贸易政策不确定性</li>
+              <li>疾病威胁（如黄叶病）</li>
+              <li>价格波动剧烈</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>总结</h2>
+        <p>全球香蕉市场正处于稳健增长期，2026年市场规模预计达到1,460亿美元。亚洲市场的崛起、可持续发展理念的深入以及技术创新正在重塑整个产业格局。对于投资者而言，关注可持续种植、亚洲分销渠道和深加工领域将带来机遇，但同时需警惕气候风险和贸易政策变化带来的挑战。</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p style="font-size: 1.1em; margin-bottom: 15px;">📊 LobsterAI Reports</p>
+      <div class="disclaimer">
+        <p>本报告仅供参考，不构成投资建议。数据来源包括FAO、Mordor Intelligence、The Business Research Company等公开研究机构。</p>
+        <p style="margin-top: 10px;">报告生成时间：2026年2月28日</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
